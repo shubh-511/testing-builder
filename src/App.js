@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { BuilderComponent, builder, Builder, useIsPreviewing } from "@builder.io/react";
+import { createComponent } from '@lit-labs/react';
 
 // Put your API key here
 builder.init('8c4022b1afc64438b60affc1c3ad7e13');
@@ -86,7 +87,7 @@ export default function CatchAllRoute() {
         </space-header-menu-item>
       </space-header>
       {/* Render the Builder page */}
-      <BuilderComponent model="page" content={content} />
+      <BuilderComponent model="page" api-key="8c4022b1afc64438b60affc1c3ad7e13" />
       <space-footer-type-two
           linkOptions={[
             {
@@ -180,6 +181,7 @@ Builder.registerComponent('space-quicklink-card', {
 
 Builder.registerComponent('space-media-pattern', { 
   name: 'SpaceMediaCardPattern',
+  tag: 'space-media-pattern',
   inputs: [{ name: 'type'}, { name: 'size'}, { name: 'orientation'}, { name: '.options', type: 'list',
   subFields: [
     {
