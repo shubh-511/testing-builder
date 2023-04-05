@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { BuilderComponent, builder, Builder, useIsPreviewing } from "@builder.io/react";
 import { createComponent } from '@lit-labs/react';
-import { FooterTypeTwo, LogoGrids } from './spacekit.min.esm.js';
+import { FooterTypeTwo, LogoGrids, IconCardPattern } from './spacekit.min.esm.js';
 
 const Footer = createComponent({
   react: React,
@@ -14,6 +14,12 @@ const LogoGrid = createComponent({
   react: React,
   elementClass: LogoGrids,
   tagName: 'space-logo-grids',
+});
+
+const IconCardList = createComponent({
+  react: React,
+  elementClass: IconCardPattern,
+  tagName: 'space-iconcard-pattern',
 });
 
 // Put your API key here
@@ -101,45 +107,67 @@ export default function CatchAllRoute() {
       </space-header>
       {/* Render the Builder page */}
       <BuilderComponent model="page" api-key="8c4022b1afc64438b60affc1c3ad7e13" />
-      <LogoGrid 
-        type="carousel" 
-        title="A Fully integrated digital agency" 
-        description="We understand human needs through empathy to design experiences that improve conversion through practical strategies. We create integrated design-driven digital solutions where form follows function across an entire web product or through individual products and services" 
-        options={[
-          {
-            "src": " https://upload.wikimedia.org/wikipedia/sco/d/d8/Nestl%C3%A9.svg",
-            "alt": "Logo Name"
-          },
-          {
-            "src": " https://upload.wikimedia.org/wikipedia/sco/d/d8/Nestl%C3%A9.svg",
-            "alt": "Logo Name"
-          },
-          {
-            "src": " https://upload.wikimedia.org/wikipedia/sco/d/d8/Nestl%C3%A9.svg",
-            "alt": "Logo Name"
-          },
-          {
-            "src": " https://upload.wikimedia.org/wikipedia/sco/d/d8/Nestl%C3%A9.svg",
-            "alt": "Logo Name"
-          },
-          {
-            "src": " https://upload.wikimedia.org/wikipedia/sco/d/d8/Nestl%C3%A9.svg",
-            "alt": "Logo Name"
-          },
-          {
-            "src": " https://upload.wikimedia.org/wikipedia/sco/d/d8/Nestl%C3%A9.svg",
-            "alt": "Logo Name"
-          },
-          {
-            "src": " https://upload.wikimedia.org/wikipedia/sco/d/d8/Nestl%C3%A9.svg",
-            "alt": "Logo Name"
-          },
-          {
-            "src": " https://upload.wikimedia.org/wikipedia/sco/d/d8/Nestl%C3%A9.svg",
-            "alt": "Logo Name"
-          }
-        ]}>
-      </LogoGrid>
+        <IconCardList
+          type="carousel"
+          options={[
+            {
+              "iconName": "zap",
+              "container": false,
+              "headText": "Deliver instant answers",
+              "ctaHref": "#",
+              "ctaText": "Learn More",
+              "supportText": "An all-in-one customer service platform that helps you balance everything your customers need to be happy."
+            },
+            {
+              "iconName": "zap",
+              "container": false,
+              "headText": "Deliver instant answers",
+              "ctaHref": "#",
+              "ctaText": "Learn More",
+              "supportText": "An all-in-one customer service platform that helps you balance everything your customers need to be happy."
+            },
+            {
+              "iconName": "zap",
+              "container": false,
+              "headText": "Deliver instant answers",
+              "ctaHref": "#",
+              "ctaText": "Learn More",
+              "supportText": "An all-in-one customer service platform that helps you balance everything your customers need to be happy."
+            },
+            {
+              "iconName": "zap",
+              "container": false,
+              "headText": "Deliver instant answers",
+              "ctaHref": "#",
+              "ctaText": "Learn More",
+              "supportText": "An all-in-one customer service platform that helps you balance everything your customers need to be happy."
+            },
+            {
+              "iconName": "zap",
+              "container": false,
+              "headText": "Deliver instant answers",
+              "ctaHref": "#",
+              "ctaText": "Learn More",
+              "supportText": "An all-in-one customer service platform that helps you balance everything your customers need to be happy."
+            },
+            {
+              "iconName": "zap",
+              "container": false,
+              "headText": "Deliver instant answers",
+              "ctaHref": "#",
+              "ctaText": "Learn More",
+              "supportText": "An all-in-one customer service platform that helps you balance everything your customers need to be happy."
+            },
+            {
+              "iconName": "zap",
+              "container": false,
+              "headText": "Deliver instant answers",
+              "ctaHref": "#",
+              "ctaText": "Learn More",
+              "supportText": "An all-in-one customer service platform that helps you balance everything your customers need to be happy."
+            }
+          ]}
+        ></IconCardList>
       <Footer
           linkOptions={[
             {
@@ -216,7 +244,7 @@ Builder.registerComponent('space-image', {
   inputs: [{ name: 'alt'}, { name: 'src'}],
 })
 
-Builder.registerComponent('LogoGrid', { 
+Builder.registerComponent('space-logo-grids', { 
   name: 'SpaceLogoGrid',
   inputs: [{ name: 'type', type: 'string'}, { name: 'title', type: 'string'}, { name: 'description', type: 'string'}, { name: 'options', type: 'list',
   subFields: [
@@ -282,3 +310,30 @@ Builder.registerComponent('space-media-pattern', {
  }],
 })
 
+Builder.registerComponent('space-iconcard-pattern', { 
+  name: 'SpaceIconCardPatterns',
+  inputs: [{ name: 'type'}, { name: 'alignment'}, { name: 'options', type: 'list',
+  subFields: [
+    {
+      name: 'iconName',
+      type: 'string',
+    },
+    {
+      name: 'headText',
+      type: 'string',
+    },
+    {
+      name: 'ctaText',
+      type: 'string',
+    },
+    {
+      name: 'ctaHref',
+      type: 'string',
+    },
+    {
+      name: 'supportText',
+      type: 'string',
+    }
+  ]
+}],
+})
