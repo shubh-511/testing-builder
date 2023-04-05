@@ -2,6 +2,19 @@
 import React, { useEffect, useState } from "react";
 import { BuilderComponent, builder, Builder, useIsPreviewing } from "@builder.io/react";
 import { createComponent } from '@lit-labs/react';
+import { FooterTypeTwo, LogoGrids } from './spacekit.min.esm.js';
+
+const Footer = createComponent({
+  react: React,
+  elementClass: FooterTypeTwo,
+  tagName: 'space-footer-type-two',
+});
+
+const LogoGrid = createComponent({
+  react: React,
+  elementClass: LogoGrids,
+  tagName: 'space-logo-grids',
+});
 
 // Put your API key here
 builder.init('8c4022b1afc64438b60affc1c3ad7e13');
@@ -88,7 +101,46 @@ export default function CatchAllRoute() {
       </space-header>
       {/* Render the Builder page */}
       <BuilderComponent model="page" api-key="8c4022b1afc64438b60affc1c3ad7e13" />
-      <space-footer-type-two
+      <LogoGrid 
+        type="carousel" 
+        title="A Fully integrated digital agency" 
+        description="We understand human needs through empathy to design experiences that improve conversion through practical strategies. We create integrated design-driven digital solutions where form follows function across an entire web product or through individual products and services" 
+        options={[
+          {
+            "src": " https://upload.wikimedia.org/wikipedia/sco/d/d8/Nestl%C3%A9.svg",
+            "alt": "Logo Name"
+          },
+          {
+            "src": " https://upload.wikimedia.org/wikipedia/sco/d/d8/Nestl%C3%A9.svg",
+            "alt": "Logo Name"
+          },
+          {
+            "src": " https://upload.wikimedia.org/wikipedia/sco/d/d8/Nestl%C3%A9.svg",
+            "alt": "Logo Name"
+          },
+          {
+            "src": " https://upload.wikimedia.org/wikipedia/sco/d/d8/Nestl%C3%A9.svg",
+            "alt": "Logo Name"
+          },
+          {
+            "src": " https://upload.wikimedia.org/wikipedia/sco/d/d8/Nestl%C3%A9.svg",
+            "alt": "Logo Name"
+          },
+          {
+            "src": " https://upload.wikimedia.org/wikipedia/sco/d/d8/Nestl%C3%A9.svg",
+            "alt": "Logo Name"
+          },
+          {
+            "src": " https://upload.wikimedia.org/wikipedia/sco/d/d8/Nestl%C3%A9.svg",
+            "alt": "Logo Name"
+          },
+          {
+            "src": " https://upload.wikimedia.org/wikipedia/sco/d/d8/Nestl%C3%A9.svg",
+            "alt": "Logo Name"
+          }
+        ]}>
+      </LogoGrid>
+      <Footer
           linkOptions={[
             {
               heading: 'Product',
@@ -111,6 +163,20 @@ export default function CatchAllRoute() {
                 navigationHref: '#',
               }),
             },
+            {
+              heading: 'Use Cases',
+              options: Array(6).fill({
+                navigationText: 'Overview',
+                navigationHref: '#',
+              }),
+            },
+            {
+              heading: 'Social',
+              options: Array(6).fill({
+                navigationText: 'Overview',
+                navigationHref: '#',
+              }),
+            },
             
           ]}
           background={true}
@@ -120,7 +186,7 @@ export default function CatchAllRoute() {
           supportive-text="Design amazing digital experiences that create more happy in the world."
           socialLinkOptions={links}
         >
-        </space-footer-type-two>
+        </Footer>
     </>
   );
 }
@@ -150,13 +216,17 @@ Builder.registerComponent('space-image', {
   inputs: [{ name: 'alt'}, { name: 'src'}],
 })
 
-Builder.registerComponent('space-logo-grids', { 
+Builder.registerComponent('LogoGrid', { 
   name: 'SpaceLogoGrid',
-  inputs: [{ name: 'type'}, { name: '.options', type: 'list',
+  inputs: [{ name: 'type', type: 'string'}, { name: 'title', type: 'string'}, { name: 'description', type: 'string'}, { name: 'options', type: 'list',
   subFields: [
     {
       name: 'src',
-      type: 'text'
+      type: 'string'
+    },
+    {
+      name: 'alt',
+      type: 'string'
     }
   ]
  }],
