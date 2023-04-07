@@ -1,26 +1,10 @@
 
 import React, { useEffect, useState } from "react";
 import { BuilderComponent, builder, Builder, useIsPreviewing } from "@builder.io/react";
-import { createComponent } from '@lit-labs/react';
-import { FooterTypeTwo, LogoGrids, IconCardPattern } from './spacekit.min.esm.js';
-
-const Footer = createComponent({
-  react: React,
-  elementClass: FooterTypeTwo,
-  tagName: 'space-footer-type-two',
-});
-
-const LogoGrid = createComponent({
-  react: React,
-  elementClass: LogoGrids,
-  tagName: 'space-logo-grids',
-});
-
-const IconCardList = createComponent({
-  react: React,
-  elementClass: IconCardPattern,
-  tagName: 'space-iconcard-pattern',
-});
+import LogoGrid from "./components/LogoGrid";
+import IconCardList from "./components/IconCardList";
+import Footer from "./components/Footer";
+import QuickLinkCardPatterns from "./components/QuickLinkCard";
 
 // Put your API key here
 builder.init('8c4022b1afc64438b60affc1c3ad7e13');
@@ -106,68 +90,7 @@ export default function CatchAllRoute() {
         </space-header-menu-item>
       </space-header>
       {/* Render the Builder page */}
-      <BuilderComponent model="page" api-key="8c4022b1afc64438b60affc1c3ad7e13" />
-        <IconCardList
-          type="carousel"
-          options={[
-            {
-              "iconName": "zap",
-              "container": false,
-              "headText": "Deliver instant answers",
-              "ctaHref": "#",
-              "ctaText": "Learn More",
-              "supportText": "An all-in-one customer service platform that helps you balance everything your customers need to be happy."
-            },
-            {
-              "iconName": "zap",
-              "container": false,
-              "headText": "Deliver instant answers",
-              "ctaHref": "#",
-              "ctaText": "Learn More",
-              "supportText": "An all-in-one customer service platform that helps you balance everything your customers need to be happy."
-            },
-            {
-              "iconName": "zap",
-              "container": false,
-              "headText": "Deliver instant answers",
-              "ctaHref": "#",
-              "ctaText": "Learn More",
-              "supportText": "An all-in-one customer service platform that helps you balance everything your customers need to be happy."
-            },
-            {
-              "iconName": "zap",
-              "container": false,
-              "headText": "Deliver instant answers",
-              "ctaHref": "#",
-              "ctaText": "Learn More",
-              "supportText": "An all-in-one customer service platform that helps you balance everything your customers need to be happy."
-            },
-            {
-              "iconName": "zap",
-              "container": false,
-              "headText": "Deliver instant answers",
-              "ctaHref": "#",
-              "ctaText": "Learn More",
-              "supportText": "An all-in-one customer service platform that helps you balance everything your customers need to be happy."
-            },
-            {
-              "iconName": "zap",
-              "container": false,
-              "headText": "Deliver instant answers",
-              "ctaHref": "#",
-              "ctaText": "Learn More",
-              "supportText": "An all-in-one customer service platform that helps you balance everything your customers need to be happy."
-            },
-            {
-              "iconName": "zap",
-              "container": false,
-              "headText": "Deliver instant answers",
-              "ctaHref": "#",
-              "ctaText": "Learn More",
-              "supportText": "An all-in-one customer service platform that helps you balance everything your customers need to be happy."
-            }
-          ]}
-        ></IconCardList>
+      <BuilderComponent model="page" api-key="8c4022b1afc64438b60affc1c3ad7e13" />        
       <Footer
           linkOptions={[
             {
@@ -244,7 +167,7 @@ Builder.registerComponent('space-image', {
   inputs: [{ name: 'alt'}, { name: 'src'}],
 })
 
-Builder.registerComponent('space-logo-grids', { 
+Builder.registerComponent(LogoGrid, { 
   name: 'SpaceLogoGrid',
   inputs: [{ name: 'type', type: 'string'}, { name: 'title', type: 'string'}, { name: 'description', type: 'string'}, { name: 'options', type: 'list',
   subFields: [
@@ -270,11 +193,52 @@ Builder.registerComponent('space-contact-header', {
   inputs: [{ name: 'title'}, { name: 'support-text'}, { name: 'sub-title'}, { name: 'first-name-label'}, { name: 'first-name-placeholder'}, { name: 'last-name-label'}, { name: 'last-name-placeholder'}, { name: 'email-label'}, { name: 'email-placeholder'}, { name: 'phone-label'}, { name: 'phone-placeholder'}, { name: 'button-text'}, { name: 'center', type: 'boolean'}],
 })
 
-Builder.registerComponent('space-quicklink-card', { 
-  name: 'SpaceMediaCard',
-  inputs: [{ name: 'src'}, { name: 'alt'}, { name: 'size', defaultValue: 'md'},
-  { name: 'head-text'}, { name: 'support-text'}, { name: 'color'}, { name: 'cta-text'}, { name: 'cta-icon-name'}
-  ],
+Builder.registerComponent(QuickLinkCardPatterns, { 
+  name: 'SpaceQuickLinkCardPattern',
+  inputs: [
+    {
+      name: 'type',
+      defaultValue: 'carousel'
+    },
+    {
+      name: 'size',
+      defaultValue: 'md'
+    },
+    {
+      name: 'color',
+      defaultValue: 'light'
+    },
+    {
+      name: 'options',
+      type: 'list',
+      subFields: [
+        {
+          name: 'src',
+          type: 'string',
+        },
+        {
+          name: 'alt',
+          type: 'string',
+        },
+        {
+          name: 'ctaText',
+          type: 'string',
+        },
+        {
+          name: 'ctaIconName',
+          type: 'string',
+        },
+        {
+          name: 'headingText',
+          type: 'string',
+        },
+        {
+          name: 'supportText',
+          type: 'string',
+        },
+      ]
+    },
+  ]
 })
 
 Builder.registerComponent('space-media-pattern', { 
@@ -310,7 +274,7 @@ Builder.registerComponent('space-media-pattern', {
  }],
 })
 
-Builder.registerComponent('space-iconcard-pattern', { 
+Builder.registerComponent(IconCardList, {
   name: 'SpaceIconCardPatterns',
   inputs: [{ name: 'type'}, { name: 'alignment'}, { name: 'options', type: 'list',
   subFields: [
@@ -335,5 +299,5 @@ Builder.registerComponent('space-iconcard-pattern', {
       type: 'string',
     }
   ]
-}],
-})
+  }]
+});
